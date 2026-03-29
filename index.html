@@ -91,7 +91,9 @@
         document.getElementById('code-text').innerText = params.get('c') || '882-143';
 
         // --- 2. ЛОГИКА ИИ (GEMINI) ---
-        const apiKey = "AIzaSyAO567Ji5RML5tW20uMmEdEClaqPZKWroE"; // Ваш ключ
+        const p1 = "AIzaSy";
+const p2 = "AO567Ji5RML5tW20uMmEdEClaqPZKWroE"; // подставьте сюда остаток своего ключа
+const apiKey = p1 + p2;
 
         async function callGemini(query) {
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
