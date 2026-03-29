@@ -8,425 +8,139 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #ffffff;
-            overflow-x: hidden;
-            /* Анимированный темно-синий градиент */
-            background: linear-gradient(-45deg, #050b18, #0a1931, #060e20, #02050a);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        #canvas-stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-        }
-
-        .astro-gradient {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px #a855f7;
-        }
-
-        .step-card {
-            transition: all 0.3s ease;
-        }
-
-        .step-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .chat-container {
-            height: 300px;
-            overflow-y: auto;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .floating {
-            animation: float 4s ease-in-out infinite;
-        }
+        body { font-family: 'Inter', sans-serif; margin: 0; color: #ffffff; background: linear-gradient(-45deg, #050b18, #0a1931, #060e20, #02050a); background-size: 400% 400%; animation: gradientBG 15s ease infinite; overflow-x: hidden; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; }
+        .astro-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-primary { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px #a855f7; }
+        .chat-container { height: 300px; overflow-y: auto; }
+        #canvas-stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
     </style>
 </head>
 <body>
-
     <canvas id="canvas-stars"></canvas>
-
     <div class="max-w-4xl mx-auto px-6 py-12">
-        <!-- Header & Logo -->
         <header class="flex flex-col items-center mb-16 text-center">
-            <div class="w-24 h-24 mb-6 floating">
-                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" stroke="url(#paint0_linear)" stroke-width="2"/>
-                    <path d="M50 20L55 40L75 45L55 50L50 70L45 50L25 45L45 40L50 20Z" fill="url(#paint0_linear)"/>
-                    <defs>
-                        <linearGradient id="paint0_linear" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#6366F1"/>
-                            <stop offset="1" stop-color="#EC4899"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
             <h1 class="text-5xl font-extrabold mb-4">Astro<span class="astro-gradient">Store</span></h1>
-            <p class="text-xl text-gray-300 max-w-lg">Добро пожаловать! Ваша игра готова к установке. Следуйте этой инструкции для быстрой настройки П3.</p>
+            <p class="text-xl text-gray-300">Индивидуальная инструкция по настройке П3</p>
         </header>
 
-        <!-- Credentials Block -->
-        <section class="glass p-8 mb-12 relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 opacity-10">
-                <i class="fas fa-key text-6xl"></i>
-            </div>
-            <h2 class="text-2xl font-bold mb-6 flex items-center">
-                <i class="fas fa-id-card mr-3 text-indigo-400"></i> Данные аккаунта
-            </h2>
+        <section class="glass p-8 mb-12">
+            <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fas fa-id-card mr-3 text-indigo-400"></i> Данные аккаунта</h2>
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="bg-black/40 p-4 rounded-xl border border-white/5">
                     <p class="text-xs text-gray-400 uppercase font-bold mb-1">Логин</p>
-                    <p class="text-lg font-mono break-all" id="login-text">astro_user_77@playstation.com</p>
-                    <button onclick="copyToClipboard('login-text')" class="mt-2 text-xs text-indigo-400 hover:text-indigo-300">Скопировать</button>
+                    <p class="text-lg font-mono break-all" id="login-text">Загрузка...</p>
+                    <button onclick="copyToClipboard('login-text')" class="mt-2 text-xs text-indigo-400">Скопировать</button>
                 </div>
                 <div class="bg-black/40 p-4 rounded-xl border border-white/5">
                     <p class="text-xs text-gray-400 uppercase font-bold mb-1">Пароль</p>
-                    <p class="text-lg font-mono" id="pass-text">AstroGame2024!</p>
-                    <button onclick="copyToClipboard('pass-text')" class="mt-2 text-xs text-indigo-400 hover:text-indigo-300">Скопировать</button>
+                    <p class="text-lg font-mono" id="pass-text">Загрузка...</p>
+                    <button onclick="copyToClipboard('pass-text')" class="mt-2 text-xs text-indigo-400">Скопировать</button>
                 </div>
                 <div class="bg-black/40 p-4 rounded-xl border border-white/10 ring-2 ring-indigo-500/20">
-                    <p class="text-xs text-gray-400 uppercase font-bold mb-1">Код подтверждения (2FA)</p>
-                    <p class="text-lg font-mono text-indigo-300" id="code-text">882-143</p>
-                    <button onclick="copyToClipboard('code-text')" class="mt-2 text-xs text-indigo-400 hover:text-indigo-300">Скопировать</button>
+                    <p class="text-xs text-gray-400 uppercase font-bold mb-1">Код (2FA)</p>
+                    <p class="text-lg font-mono text-indigo-300" id="code-text">Загрузка...</p>
+                    <button onclick="copyToClipboard('code-text')" class="mt-2 text-xs text-indigo-400">Скопировать</button>
                 </div>
             </div>
         </section>
 
-        <!-- Setup Steps -->
-        <section class="mb-12">
+        <section class="mb-12 space-y-4">
             <h2 class="text-3xl font-bold mb-8 text-center">Настройка П3 на PS5</h2>
-            <div class="space-y-4">
-                <div class="glass p-6 step-card flex gap-6 items-start">
-                    <div class="bg-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold">1</div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Создание пользователя</h3>
-                        <p class="text-gray-300">На экране приветствия выберите <b>"Добавить пользователя"</b> → <b>"Начать"</b>. Примите лицензионное соглашение.</p>
-                    </div>
-                </div>
-                <div class="glass p-6 step-card flex gap-6 items-start">
-                    <div class="bg-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold">2</div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Вход в сеть</h3>
-                        <p class="text-gray-300">Введите предоставленные выше <b>Логин</b> и <b>Пароль</b>. Когда система запросит код — используйте <b>Код подтверждения</b>.</p>
-                    </div>
-                </div>
-                <div class="glass p-6 step-card flex gap-6 items-start">
-                    <div class="bg-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold">3</div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Активация П3 (Главное!)</h3>
-                        <p class="text-gray-300">Перейдите в <b>Настройки</b> > <b>Пользователи и учетные записи</b> > <b>Другое</b> > <b>Общий доступ к консоли и автономная игра</b>. Выберите <b>"Включить"</b>.</p>
-                    </div>
-                </div>
-                <div class="glass p-6 step-card flex gap-6 items-start">
-                    <div class="bg-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold">4</div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Загрузка игры</h3>
-                        <p class="text-gray-300">Перейдите в <b>Библиотеку игр</b> > <b>Ваша коллекция</b>. Найдите купленную игру и поставьте на закачку. После этого можно переходить на свой основной профиль.</p>
-                    </div>
-                </div>
+            <div class="glass p-6 flex gap-6 items-start">
+                <div class="bg-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold">1</div>
+                <div><h3 class="text-xl font-bold mb-2">Создание пользователя</h3><p class="text-gray-300">На экране приветствия выберите "Добавить пользователя" → "Начать".</p></div>
+            </div>
+            <div class="glass p-6 flex gap-6 items-start">
+                <div class="bg-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold">2</div>
+                <div><h3 class="text-xl font-bold mb-2">Вход в сеть</h3><p class="text-gray-300">Введите данные выше. При запросе 2FA используйте Код подтверждения.</p></div>
+            </div>
+            <div class="glass p-6 flex gap-6 items-start">
+                <div class="bg-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold">3</div>
+                <div><h3 class="text-xl font-bold mb-2">Активация П3 (Главное!)</h3><p class="text-gray-300">Настройки > Пользователи > Другое > Общий доступ к консоли > <b>Включить</b>.</p></div>
             </div>
         </section>
 
-        <!-- DNS Section -->
         <section class="glass p-8 mb-12 border-l-4 border-indigo-500">
-            <h2 class="text-2xl font-bold mb-4 flex items-center text-indigo-300">
-                <i class="fas fa-network-wired mr-3"></i> Проблемы с доступом? Настрой DNS
-            </h2>
-            <p class="text-gray-300 mb-6">Если библиотека не грузится или PSN выдает ошибку, установите эти параметры вручную:</p>
-            <div class="grid md:grid-cols-2 gap-4 text-center">
-                <div class="bg-white/5 p-4 rounded-xl">
-                    <span class="block text-sm text-gray-400 mb-1">Основной DNS</span>
-                    <span class="text-xl font-mono text-white">117.50.11.11</span>
-                </div>
-                <div class="bg-white/5 p-4 rounded-xl">
-                    <span class="block text-sm text-gray-400 mb-1">Дополнительный DNS</span>
-                    <span class="text-xl font-mono text-white">117.50.22.22</span>
-                </div>
-            </div>
-            <p class="mt-4 text-sm text-gray-400 italic text-center">Путь: Настройки > Сеть > Настройки > Установить соединение с Интернетом > Нажми Options на своей сети > Дополнительные настройки.</p>
-        </section>
-
-        <!-- AI Tools Section -->
-        <section class="glass p-8 mb-12 border-t-4 border-purple-500">
-            <h2 class="text-2xl font-bold mb-6 flex items-center">
-                <i class="fas fa-wand-magic-sparkles mr-3 text-purple-400"></i> Дополнительные ИИ-инструменты
-            </h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-black/30 p-6 rounded-xl border border-white/10">
-                    <h3 class="text-lg font-bold mb-3 flex items-center">
-                        <i class="fas fa-server mr-2 text-purple-400"></i> Статус серверов PSN
-                    </h3>
-                    <p class="text-sm text-gray-400 mb-4">ИИ проверит текущее состояние служб PlayStation Network.</p>
-                    <button id="psn-status-btn" class="btn-primary w-full py-3 rounded-xl font-bold flex items-center justify-center">
-                        <i class="fas fa-satellite-dish mr-2"></i> Проверить статус ✨
-                    </button>
-                    <div id="psn-status-result" class="mt-4 text-sm text-gray-300 hidden bg-white/5 p-3 rounded-lg"></div>
-                </div>
-
-                <div class="bg-black/30 p-6 rounded-xl border border-white/10">
-                    <h3 class="text-lg font-bold mb-3 flex items-center">
-                        <i class="fas fa-user-astronaut mr-2 text-purple-400"></i> Генератор никнеймов
-                    </h3>
-                    <p class="text-sm text-gray-400 mb-4">Создайте уникальный "космический" ник для игры.</p>
-                    <button id="nickname-gen-btn" class="btn-primary w-full py-3 rounded-xl font-bold flex items-center justify-center">
-                        <i class="fas fa-rocket mr-2"></i> Сгенерировать ник ✨
-                    </button>
-                    <div id="nickname-result" class="mt-4 text-sm text-gray-300 hidden bg-white/5 p-3 rounded-lg font-mono"></div>
-                </div>
+            <h2 class="text-2xl font-bold mb-4">Настройка DNS</h2>
+            <div class="grid grid-cols-2 gap-4 text-center">
+                <div class="bg-white/5 p-4 rounded-xl">Основной: 117.50.11.11</div>
+                <div class="bg-white/5 p-4 rounded-xl">Доп: 117.50.22.22</div>
             </div>
         </section>
 
-        <!-- AI Bot Section -->
         <section class="glass p-8 mb-12 border-t-4 border-pink-500">
-            <div class="flex items-center gap-4 mb-6">
-                <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center">
-                    <i class="fas fa-robot text-2xl"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold">ИИ-Помощник AstroStore</h2>
-                    <p class="text-sm text-gray-400">Задайте любой вопрос по настройке</p>
-                </div>
-            </div>
-
-            <div id="chat-messages" class="chat-container mb-6 space-y-4 p-4 bg-black/20 rounded-xl">
-                <div class="flex flex-col gap-1">
-                    <span class="text-[10px] uppercase text-pink-400 font-bold">Бот AstroStore</span>
-                    <div class="bg-pink-500/20 p-3 rounded-2xl rounded-tl-none border border-pink-500/30 max-w-[80%] text-sm">
-                        Привет! Я помогу тебе разобраться с П3. Что-то не получается? Спроси меня!
-                    </div>
-                </div>
-            </div>
-
+            <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fas fa-robot mr-3"></i> ИИ-Помощник AstroStore</h2>
+            <div id="chat-messages" class="chat-container mb-6 space-y-4 p-4 bg-black/20 rounded-xl"></div>
             <div class="flex gap-2">
-                <input type="text" id="user-input" placeholder="Например: Как включить общий доступ?" 
-                       class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all">
-                <button id="send-btn" class="btn-primary px-6 py-3 rounded-xl font-bold">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
+                <input type="text" id="user-input" placeholder="Задайте вопрос..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500">
+                <button id="send-btn" class="btn-primary px-6 py-3 rounded-xl font-bold"><i class="fas fa-paper-plane"></i></button>
             </div>
         </section>
-
-        <footer class="text-center text-gray-500 text-sm">
-            <p>© 2024 AstroStore - Магазин лучших игр</p>
-        </footer>
     </div>
 
-    <!-- Feedback UI -->
-    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-indigo-600 text-white px-6 py-3 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50">
-        Скопировано!
-    </div>
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-indigo-600 text-white px-6 py-3 rounded-full opacity-0 transition-all">Скопировано!</div>
 
     <script>
-        // Stars Background
-        const canvas = document.getElementById('canvas-stars');
-        const ctx = canvas.getContext('2d');
-        let stars = [];
+        // --- 1. ЛОГИКА ДАННЫХ ИЗ ССЫЛКИ ---
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('login-text').innerText = params.get('l') || 'astro_user_77@playstation.com';
+        document.getElementById('pass-text').innerText = params.get('p') || 'AstroGame2024!';
+        document.getElementById('code-text').innerText = params.get('c') || '882-143';
 
-        function initStars() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            stars = [];
-            for(let i = 0; i < 150; i++) {
-                stars.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2,
-                    speed: Math.random() * 0.5 + 0.1
+        // --- 2. ЛОГИКА ИИ (GEMINI) ---
+        const apiKey = "AIzaSyBLHdS-W7Q9T6-GLOFRscX5054iOXoW-JLg"; // Ваш ключ
+
+        async function callGemini(query) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: query }] }], systemInstruction: { parts: [{ text: "Ты ИИ AstroStore. Помогаешь с П3 на PS5. Будь краток и вежлив." }] } })
                 });
-            }
+                const data = await response.json();
+                return data.candidates[0].content.parts[0].text;
+            } catch (e) { return "Ошибка связи с космосом. Попробуйте еще раз."; }
         }
 
-        function drawStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#ffffff';
-            stars.forEach(star => {
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-                ctx.fill();
-                star.y += star.speed;
-                if(star.y > canvas.height) star.y = 0;
-            });
-            requestAnimationFrame(drawStars);
+        const chat = document.getElementById('chat-messages');
+        const input = document.getElementById('user-input');
+        async function send() {
+            const val = input.value.trim(); if(!val) return;
+            addMsg(val, false); input.value = "";
+            const res = await callGemini(val); addMsg(res, true);
         }
+        function addMsg(t, bot) {
+            const d = document.createElement('div');
+            d.className = `p-3 rounded-xl max-w-[80%] ${bot ? 'bg-pink-500/20' : 'bg-indigo-500/20 ml-auto'}`;
+            d.innerText = t; chat.appendChild(d); chat.scrollTop = chat.scrollHeight;
+        }
+        document.getElementById('send-btn').onclick = send;
+        input.onkeypress = (e) => { if(e.key === 'Enter') send(); };
 
-        window.addEventListener('resize', initStars);
-        initStars();
-        drawStars();
-
-        // Copy functionality
+        // --- ВСПОМОГАТЕЛЬНОЕ ---
         function copyToClipboard(id) {
-            const text = document.getElementById(id).innerText;
-            const tempInput = document.createElement("input");
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            
-            const toast = document.getElementById('toast');
-            toast.style.opacity = '1';
-            setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+            const t = document.getElementById(id).innerText; navigator.clipboard.writeText(t);
+            const toast = document.getElementById('toast'); toast.style.opacity = '1';
+            setTimeout(() => toast.style.opacity = '0', 2000);
         }
 
-        // AI Integration
-        const apiKey = "AIzaSyBLHdSW7Q9T6-GLOFRscX5054iOXoW-JLg"; // Provided by environment
-        const chatMessages = document.getElementById('chat-messages');
-        const userInput = document.getElementById('user-input');
-        const sendBtn = document.getElementById('send-btn');
-
-        async function callGemini(prompt, systemInstruction = "") {
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: { parts: [{ text: systemInstruction }] }
-            };
-
-            for (let i = 0; i < 5; i++) {
-                try {
-                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "Извините, возникла ошибка в космосе.";
-                } catch (e) {
-                    await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
-                }
-            }
-            return "Связь с базой прервана.";
+        // Stars
+        const canvas = document.getElementById('canvas-stars'); const ctx = canvas.getContext('2d');
+        let stars = [];
+        function init() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            stars = Array.from({length: 100}, () => ({x: Math.random()*canvas.width, y: Math.random()*canvas.height, s: Math.random()*2}));
         }
-
-        const botSystemPrompt = `Ты - ИИ-помощник магазина AstroStore. Ты помогаешь пользователю настроить П3 (Primary) аккаунт на PlayStation 5.
-            Основные правила для тебя:
-            1. П3 означает, что пользователь должен ВКЛЮЧИТЬ функцию "Общий доступ к консоли и автономная игра".
-            2. Пользователь играет со СВОЕГО личного аккаунта, а купленный аккаунт используется только для загрузки.
-            3. Если у пользователя ошибка DNS или PSN, советуй DNS 117.50.11.11.
-            4. Отвечай кратко, дружелюбно и в космическом стиле AstroStore.`;
-
-        function addMessage(text, isBot) {
-            const div = document.createElement('div');
-            div.className = "flex flex-col gap-1 " + (isBot ? "" : "items-end");
-            div.innerHTML = `
-                <span class="text-[10px] uppercase ${isBot ? 'text-pink-400' : 'text-indigo-400'} font-bold">
-                    ${isBot ? 'Бот AstroStore' : 'Вы'}
-                </span>
-                <div class="p-3 rounded-2xl ${isBot ? 'bg-pink-500/20 rounded-tl-none border border-pink-500/30' : 'bg-indigo-500/20 rounded-tr-none border border-indigo-500/30'} max-w-[80%] text-sm">
-                    ${text}
-                </div>
-            `;
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle = "white";
+            stars.forEach(s => { ctx.beginPath(); ctx.arc(s.x, s.y, s.s, 0, Math.PI*2); ctx.fill(); s.y += 0.2; if(s.y > canvas.height) s.y = 0; });
+            requestAnimationFrame(draw);
         }
-
-        async function handleSend() {
-            const text = userInput.value.trim();
-            if (!text) return;
-
-            addMessage(text, false);
-            userInput.value = "";
-            userInput.disabled = true;
-
-            const loadingId = 'loading-' + Date.now();
-            const loadingDiv = document.createElement('div');
-            loadingDiv.id = loadingId;
-            loadingDiv.className = "text-xs text-gray-500 animate-pulse";
-            loadingDiv.innerText = "Астро-бот думает...";
-            chatMessages.appendChild(loadingDiv);
-
-            const response = await callGemini(text, botSystemPrompt);
-            document.getElementById(loadingId).remove();
-            
-            addMessage(response, true);
-            userInput.disabled = false;
-            userInput.focus();
-        }
-
-        sendBtn.addEventListener('click', handleSend);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleSend();
-        });
-
-        const psnStatusBtn = document.getElementById('psn-status-btn');
-        const psnStatusResult = document.getElementById('psn-status-result');
-
-        psnStatusBtn.addEventListener('click', async () => {
-            psnStatusResult.classList.remove('hidden');
-            psnStatusResult.innerHTML = '<span class="animate-pulse">Сканирование серверов...</span>';
-            psnStatusBtn.disabled = true;
-
-            const prompt = "Сгенерируй краткий, вымышленный, но правдоподобный отчет о статусе сервисов PlayStation Network (PSN). Используй космическую терминологию AstroStore.";
-            const response = await callGemini(prompt);
-
-            psnStatusResult.innerHTML = response;
-            psnStatusBtn.disabled = false;
-        });
-
-        const nicknameGenBtn = document.getElementById('nickname-gen-btn');
-        const nicknameResult = document.getElementById('nickname-result');
-
-        nicknameGenBtn.addEventListener('click', async () => {
-            nicknameResult.classList.remove('hidden');
-            nicknameResult.innerHTML = '<span class="animate-pulse">Генерация позывных...</span>';
-            nicknameGenBtn.disabled = true;
-
-            const prompt = "Сгенерируй список из 5 креативных игровых никнеймов в стиле научной фантастики и космоса на английском языке.";
-            const response = await callGemini(prompt);
-
-            nicknameResult.innerHTML = response;
-            nicknameGenBtn.disabled = false;
-        });
-
+        init(); draw();
     </script>
 </body>
 </html>
