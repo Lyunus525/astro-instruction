@@ -95,16 +95,33 @@ const p2 = "CG5QdfmA7bkFucf2EL4AlXLJ9dRSvRrac";
 const apiKey = p1 + p2;
 
         async function callGemini(query) {
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            // Используем прямую склейку адреса и ключа без лишних символов
+            const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
+            
             try {
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: query }] }], systemInstruction: { parts: [{ text: "Ты ИИ AstroStore. Помогаешь с П3 на PS5. Будь краток и вежлив." }] } })
+                    body: JSON.stringify({
+                        contents: [{ 
+                            parts: [{ text: query }] 
+                        }],
+                        systemInstruction: { 
+                            parts: [{ text: "Ты ИИ AstroStore. Помогаешь с П3 на PS5. Будь краток и вежлив." }] 
+                        }
+                    })
                 });
+                
                 const data = await response.json();
-                return data.candidates[0].content.parts[0].text;
-            } catch (e) { return "Ошибка связи с космосом. Попробуйте еще раз."; }
+                
+                if (data.candidates && data.candidates[0].content) {
+                    return data.candidates[0].content.parts[0].text;
+                } else {
+                    return "ИИ временно недоступен. Попробуйте еще раз через минуту.";
+                }
+            } catch (e) { 
+                return "Ошибка связи. Проверьте интернет!"; 
+            }
         }
 
         const chat = document.getElementById('chat-messages');
